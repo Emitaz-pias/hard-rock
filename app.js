@@ -5,7 +5,10 @@ searchSong = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => showSong(data.data))
-    .catch(error=>displayError("your search didn't match  to any document :("))
+    .catch((error) =>
+      displayError("your search didn't match  to any document :(")
+    );
+  spinner();
   showSong = (songs) => {
     const songContainer = document.getElementById("song-container");
     songContainer.innerHTML = "";
@@ -14,19 +17,19 @@ searchSong = () => {
       const createSongDiv = document.createElement("div");
       createSongDiv.className = "single-result row align-items-center my-3 p-3";
       const createSongDetails = `
-
 <div class="col-md-9">
 <h3 class="lyrics-name">${song.title}</h3>
 <p class="author lead">Album by <span>${song.artist.name}</span></p>
+
 <audio controls>
 <source src="${song.preview}" type="audio/mpeg">
-Your browser does not support the audio tag.
 </audio>
 </div>
 <div class="col-md-3 text-md-right text-center">
 <button onclick="getLyrics('${song.artist.name}','${song.title}')" class="btn btn-success">Get Lyrics</button>
 </div>
 `;
+      spinner();
       createSongDiv.innerHTML = createSongDetails;
       songContainer.appendChild(createSongDiv);
       // console.log(song);
@@ -53,4 +56,11 @@ displayLyrics = (lyrics) => {
 // display error message
 displayError = (error) => {
   document.getElementById("error").innerText = error;
+};
+// display spinner
+const spinner = () => {
+  const spinner = document.getElementById("data-spinner");
+  const songDiv = document.getElementById("song-container");
+  spinner.classList.toggle("d-none");
+  songDiv.classList.toggle("d-none");
 };

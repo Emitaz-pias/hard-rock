@@ -51,13 +51,18 @@
                     <input id="search-field" type="text" class="form-control" placeholder="Enter your artist song name">
                     <button onclick="searchSong()" class="btn btn-success search-btn">Search</button>
                     <h3 id="error" class="text-danger"></h3>
-
                 </div>
+                <!-- spinner -->
+               <div  class=" d-flex justify-content-center align-items-center" >
+                <div id="data-spinner" class="d-none spinner-border text-primary 1" role="status">
+                </div>
+               </div>
             </div>
             <!-- Single Lyrics -->
             <div id="lyrics-div" class="single-lyrics text-center">
                 
             </div>
+           
             <div id="song-container" class="search-result col-md-8 mx-auto py-4">
                 
             </div>
