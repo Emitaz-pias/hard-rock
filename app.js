@@ -6,13 +6,12 @@ searchSong = () => {
     .then((res) => res.json())
     .then((data) => showSong(data.data))
     .catch((error) =>
-      displayError("your search didn't match  to any document :(")
+      displayError(`"your search didn't match  to any document :("`)
     );
   spinner();
   showSong = (songs) => {
     const songContainer = document.getElementById("song-container");
     songContainer.innerHTML = "";
-
     songs.forEach((song) => {
       const createSongDiv = document.createElement("div");
       createSongDiv.className = "single-result row align-items-center my-3 p-3";
@@ -20,7 +19,6 @@ searchSong = () => {
 <div class="col-md-9">
 <h3 class="lyrics-name">${song.title}</h3>
 <p class="author lead">Album by <span>${song.artist.name}</span></p>
-
 <audio controls>
 <source src="${song.preview}" type="audio/mpeg">
 </audio>
@@ -64,3 +62,10 @@ const spinner = () => {
   spinner.classList.toggle("d-none");
   songDiv.classList.toggle("d-none");
 };
+document
+  .getElementById("search-field")
+  .addEventListener("keypress", (event) => {
+    if (event.key == "Enter") {
+      document.getElementById("search-btn").click();
+    }
+  });
